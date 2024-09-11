@@ -67,3 +67,17 @@ h1 {
     transform: scale(1.05); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+
+.linkbox{
+    background-color:lightgrey;
+    color: black;
+    border: 2px solid green;
+    padding: 0.5vw,0.5wh;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 3vh;
+}
+.linkbox:hover{
+    background-color:#004d40; 
+}

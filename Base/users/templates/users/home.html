@@ -11,7 +11,8 @@
             <ul>
                 <li><img src="{{ i.pic.url }}" alt="User Picture"></li>
                 <li class="user-name">{{ i.name }}</li>
-                <li class="user-bio">{{ i.bio|slice:":60" }}</li>
+                <li class="user-bio">{{ i.bio|slice:":60" }}</li><br>
+                <li><a href="{%url 'project_home'%}" class="linkbox">Projects</a></li>
             </ul>
         </div>
         {% endfor %}

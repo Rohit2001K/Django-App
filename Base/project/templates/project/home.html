@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+{% load static%}
+<link rel="stylesheet" href="{% static 'style/project_home.css'%}">
+</head>
+<bod>
+    <h1>Projects</h1>
+    <form class="search-container">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button id="search-button">Search</button>
+    </form><br>
+    <div class="user-container">
+        {% for i in data %}
+        <div class="user-card">
+            <ul>
+                <li><img src="{{ i.project_img.url }}" ></li>
+                <li class="user-name">{{ i.title }}</li><br>
+                <li class="user-bio">{{ i.discription|slice:":60" }}</li><br>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</bod>
