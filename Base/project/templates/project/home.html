@@ -15,7 +15,7 @@
             <ul>
                 <li><img src="{{ i.project_img.url }}" ></li>
                 <li class="user-name">{{ i.title }}</li><br>
-                <li class="user-bio">{{ i.discription|slice:":60" }}</li><br>
+                <li class="user-bio">{{ i.discription|slice:":60" }}<a href="{% url 'detail_project' i.id%}">More....</a></li><br>
             </ul>
         </div>
         {% endfor %}

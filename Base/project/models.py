@@ -18,4 +18,20 @@ class Project(models.Model):
         db_table='projects'
         ordering=['-created']
 
-    
+
+
+class Review(models.Model):
+    VOTE_TYPE=(
+        ('Up','Like'),
+        ('Down','Dislike')
+    )
+    owner=models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,blank=True)
+    project=models.ForeignKey(Project,on_delete=models.CASCADE)
+    body=models.TextField(blank=True,null=True)
+    value=models.CharField(max_length=200,choices=VOTE_TYPE)
+
+    class Meta:
+        unique_together=[['owner','project']]
+
+    def __str__(self):
+        return str(self.value)
