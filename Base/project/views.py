@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from . models import Project
+from django.shortcuts import render,redirect
+from . models import Project,Review
 from.forms import review_form
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse
+from django.contrib import messages
 # Create your views here.
 
 
@@ -20,17 +21,26 @@ def detail_project(request,pk):
     detail1=Project.objects.get(id=pk)
     form=review_form()
 
-    
-    if request.method=='POST':
-        form=review_form(request.POST)
-        rev=form.save(commit=False)
-        rev.project=detail1
-        rev.owner=request.user.profile
-        rev.save()
+    try:
+        if request.method=='POST':
+            form=review_form(request.POST)
+            rev=form.save(commit=False)
+            rev.project=detail1
+            rev.owner=request.user.profile
+            rev.save()
+            messages.success(request,'Your review is added')
 
+    except:
+        messages.error(request,"You cannot submit more than 1 review for 1 game")
 
     context={
         'detail':detail,
         'form': form,
+        
     }
     return render(request,'project/subpro.html',context)
+
+def delete_review(request,pk):
+    review = Review.objects.get(id=pk)
+    
+    

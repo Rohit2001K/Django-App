@@ -4,7 +4,14 @@
     <link rel="stylesheet" href="{% static 'style/project_detail.css'%}">
 </head>
 <body>
-    <center><h1> Detail Page</h1></center>
+    <center><h1> Detail Page</h1></center><br>
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 <div class="container">
     {%for project_info in detail%}
     <div class="page">
@@ -19,8 +26,9 @@
             <div class="rev-con">
             <img src="{{i.owner.pic.url}}" class="user-pic">
             <p class="name">{{i.owner}}</p>
-            <p class="body">{{i.body}}</p>
-            <hr>
+            <p class="body">{{i.body|linebreaksbr}}</p>
+            
+           
             </div>
         {%endfor%}
         </div>
